@@ -24,7 +24,7 @@ jobs:
         run: sdkmanager "ndk;29.0.13113456"
 
       - name: Build ai-chat
-        working-directory: llama.cpp/examples/llama.android/lib
+        working-directory: .
         run: |
           chmod +x ./gradlew
           ./gradlew assembleRelease
