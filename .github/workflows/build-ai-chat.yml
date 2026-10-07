@@ -24,14 +24,14 @@ jobs:
         run: sdkmanager "ndk;29.0.13113456"
 
       - name: Build ai-chat
-        working-directory: .
         run: |
+          cd llama.cpp/examples/llama.android
           chmod +x ./gradlew
-          ./gradlew assembleRelease
+          ./gradlew build --no-daemon
 
       - name: Find ai-chat library
         run: |
-          find . -type f -name "libai-chat.so" -print
+          find llama.cpp/examples/llama.android -type f -name "libai-chat.so" -print
 
       - name: Upload ai-chat library
         uses: actions/upload-artifact@v4
