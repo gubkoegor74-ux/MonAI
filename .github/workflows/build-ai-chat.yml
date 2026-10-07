@@ -29,8 +29,13 @@ jobs:
           chmod +x ./gradlew
           ./gradlew assembleRelease
 
+      - name: Find ai-chat library
+        run: |
+          find . -type f -name "libai-chat.so" -print
+
       - name: Upload ai-chat library
         uses: actions/upload-artifact@v4
         with:
           name: ai-chat-libs
-          path: llama.cpp/examples/llama.android/lib/build/intermediates/stripped_native_libs/release/out/lib/arm64-v8a/libai-chat.so
+          path: "**/libai-chat.so"
+          if-no-files-found: error
